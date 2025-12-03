@@ -1,0 +1,22 @@
+<div class="container bg-body-tertiary border rounded p-3 h-100 class-card">
+    <div class="d-flex flex-column h-100">
+        <div>
+            <h1 class="h3 mb-1">{{classData.name}}</h1>
+            <div class="mb-3 overflow-y-scroll" >
+                <p class="p text-secondary">{{classData.description}}</p>
+                @if (this.authService.isStudent()) {
+                    <p class="p text-secondary">Creator: {{classData.creatorName}}</p>
+                }
+            </div>
+        </div>
+        @if (this.authService.isTeacher()) {
+            <div class="mt-auto">
+                <button (click)="goToClass(classData.id)" class="btn btn-outline-success w-100">See details</button>
+            </div>
+        }@else {
+            <div class="mt-auto">
+                <button (click)="enrollIn(classData.id)" class="btn btn-outline-success w-100">Enroll in</button>
+            </div>
+        }
+    </div>
+</div>

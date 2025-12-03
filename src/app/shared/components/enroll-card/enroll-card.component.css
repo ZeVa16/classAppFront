@@ -1,0 +1,8 @@
+.class-card{
+    width: 350px; 
+    min-height: 200px;
+}
+.scroll{
+    min-height: 50px;
+    overflow-y:auto;
+}

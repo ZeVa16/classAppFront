@@ -1,0 +1,40 @@
+<div class="container center col-6 p-5 mt-5">
+    <div class="border p-5 row">
+        <h1 class="h1">Register</h1>
+        <form class="col-12" [formGroup]="registerForm" (ngSubmit)="onSubmbit()" >
+            <div class="input-group mb-2 p-2">
+                <input type="text" class="form-control" placeholder="name" formControlName="name" [ngClass]="{ 'is-invalid': registerForm.get('name')!.invalid && registerForm.get('name')!.touched }" >
+                <div *ngIf="registerForm.get('name')!.invalid && registerForm.get('name')!.touched" class="invalid-feedback">
+                    <div *ngIf="registerForm.get('name')!.errors?.['required']">the name is required</div>
+                </div>
+            </div>
+            <div class="input-group mb-1 p-2">
+                <input type="text" class="form-control" placeholder="email" formControlName="email" [ngClass]="{'is-invalid':registerForm.get('email')!.invalid && registerForm.get('email')!.touched}" >
+                <div *ngIf="registerForm.get('email')!.invalid && registerForm.get('email')!.touched" class="invalid-feedback">
+                    <div *ngIf="registerForm.get('email')!.errors?.['required']">the email is required</div>
+                    <div *ngIf="registerForm.get('email')!.errors?.['email']">the email should be valid</div>
+                </div>
+            </div>
+            <div class="input-group mb-1 p-2">
+                <input type="password" class="form-control" placeholder="password" formControlName="password" [ngClass]="{'is-invalid':registerForm.get('password')!.invalid && registerForm.get('password')!.touched}">
+                <div *ngIf="registerForm.get('password')!.invalid && registerForm.get('password')!.touched" class="invalid-feedback">
+                    <div *ngIf="registerForm.get('password')!.errors?.['required']">the password is required</div>
+                    <div *ngIf="registerForm.get('password')!.errors?.['minlength']">the password must be at least 8 characters</div>
+                </div>
+            </div>
+            <div class="input-group mb-1 p-2">
+                <select class="form-select" formControlName="userType"  [ngClass]="{'is-invalid':registerForm.get('userType')!.invalid && registerForm.get('userType')!.touched}">
+                    <option value="" selected>Open this select men to choose your type</option>
+                    <option value="STUDENT">Student</option>
+                    <option value="TEACHER">Teacher</option>
+                </select>
+                <div *ngIf="registerForm.get('userType')!.invalid && registerForm.get('userType')!.touched" class="invalid-feedback">
+                    <div *ngIf="registerForm.get('userType')!.errors?.['required']">the user type is required</div>
+                </div>
+            </div>
+            
+            <button class="btn btn-outline-success col-12" type="submit">Register</button>
+        
+        </form>
+    </div>
+</div>

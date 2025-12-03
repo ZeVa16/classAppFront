@@ -1,0 +1,22 @@
+<div class="container bg-body-tertiary border rounded p-3 h-100 class-card">
+    <div class="d-flex flex-column h-100">
+        <div>
+            <h1 class="h3 mb-1">{{classData.className}}</h1>
+            <div class="overflow-y-scroll" >
+                <p class="p text-secondary">{{classData.classDescription}}</p>
+            </div>
+            <p class="p text-secondary">Creator: {{classData.teacherName}}</p>
+            <p class="p text-secondary"> Enrolled Date: {{classData.enrollmentDate | date:'shortDate'}}</p>
+        </div>
+        @if (!classData.isEnrolled) {
+            <div class="mt-auto">
+                <h1 class="btn btn-success w-100">Alredy enrolled</h1>
+            </div>
+        }@else {
+            <div class="mt-auto">
+                <button (click)="enrollIn(classData.id)" class="btn btn-outline-success w-100">Enroll in</button>
+            </div>
+        }
+        
+    </div>
+</div>

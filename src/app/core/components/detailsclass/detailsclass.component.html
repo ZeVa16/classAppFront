@@ -1,0 +1,46 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container col-12 bg-success rounded mt-4 d-flex justify-content-between">
+    <div class="row p-5 d-flex flex-column">
+        <h1 class="text-light m-2 lead fs-1">{{ classDetailsData.name }}</h1>
+        <p class="text-light h5 m-2 lead">{{ classDetailsData.description }}</p>
+    </div>
+    <div class="p-5 d-flex gap-2">
+        <button class="btn btn-primary" (click)="openEditModal()">
+            <i class="bi bi-pencil-fill me-2"></i>Update
+        </button>
+        <button class="btn btn-danger" (click)="deleteClass()">
+            <i class="bi bi-trash-fill me-2"></i>Delete
+        </button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-12 gap-2">
+        <h1 class="lead fs-1 mt-2">Students enrolled</h1>
+        @for (student of students; track $index) { 
+            <div class="container p-2">
+                <div class="row d-flex flex-column gap-2 align-items-center">
+                    <app-student-card [studentData]="student"></app-student-card>
+                </div>
+            </div>
+        } @empty {
+            <div class="container text-center align-items-center p-5">
+                <div class="row d-flex flex-column gap-3">
+                    <h1 class="h1 text-secondary">
+                        There's no students enrolled here 
+                    </h1>
+                    <i class="bi bi-eyeglasses big-icon text-secondary"></i>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<app-class-modal
+  [isOpen]="isEditModalOpen"
+  [mode]="'edit'"
+  [classData]="classDetailsData"
+  (close)="closeEditModal()"
+  (submitClass)="onUpdate($event)">
+</app-class-modal>

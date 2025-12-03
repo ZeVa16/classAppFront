@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse justify-content-between">
+        <a class="navbar-brand" href="#">ClassApp</a>
+        <div class="d-flex gap-4">
+
+            @if(this.toggleNavbar){
+                <button (click)="viewToggle.emit(false)"  class="btn btn-outline-success">All clases</button>
+                <button (click)="viewToggle.emit(true)" class="btn btn-outline-success">My classes</button>
+            }@else{
+                <button (click)="redirectMyClasses()"  class="btn btn-outline-success">My classes</button>
+            }
+            
+          <button (click)="logOut()" class="btn btn-outline-success rounded-pill" type="submit">
+            <i class="bi bi-box-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>

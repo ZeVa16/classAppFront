@@ -1,0 +1,14 @@
+<app-nav-bar ></app-nav-bar>
+<div class="d-flex flex-wrap justify-content-center gap-4 p-4 p-5 align-items-stretch">
+   
+    <app-add-class-card (classCreated)="loadClasses()"></app-add-class-card>
+    @for (class of classes; track $index) {
+        <app-classcard [classData]="class"></app-classcard>
+    }@empty {
+      <div class="container">
+            <h1 class="h1 text-secondary lead fs-3">
+                Create a new class
+            </h1>
+     </div>
+    }
+</div>

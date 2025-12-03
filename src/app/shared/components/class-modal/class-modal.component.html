@@ -1,0 +1,68 @@
+<ng-container *ngIf="isOpen">
+    <div class="modal d-block" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ modalTitle }}</h5>
+                    <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <form [formGroup]="classForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input 
+                                type="text" 
+                                id="name"
+                                formControlName="name" 
+                                class="form-control"
+                                placeholder="Enter class name"
+                                [ngClass]="{ 'is-invalid': classForm.get('name')!.invalid && classForm.get('name')!.touched }">
+                            
+                            <div *ngIf="classForm.get('name')!.invalid && classForm.get('name')!.touched" class="invalid-feedback">
+                                <div *ngIf="classForm.get('name')!.errors?.['required']">
+                                    The name is required
+                                </div>
+                                <div *ngIf="classForm.get('name')!.errors?.['minlength']">
+                                    It must have at least 3 characters
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea 
+                                id="description"
+                                formControlName="description" 
+                                class="form-control"
+                                rows="4"
+                                placeholder="Enter class description"
+                                [ngClass]="{ 'is-invalid': classForm.get('description')!.invalid && classForm.get('description')!.touched }">
+                            </textarea>
+                            
+                            <div *ngIf="classForm.get('description')!.invalid && classForm.get('description')!.touched" class="invalid-feedback">
+                                <div *ngIf="classForm.get('description')!.errors?.['required']">
+                                    The description is required
+                                </div>
+                                <div *ngIf="classForm.get('description')!.errors?.['minlength']">
+                                    It must have at least 10 characters
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" (click)="closeModal()">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn btn-success" [disabled]="classForm.invalid">
+                                {{ submitButtonText }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop fade show"></div>
+</ng-container>

@@ -1,0 +1,32 @@
+<app-nav-bar [toggleNavbar]="true" (viewToggle)="toggleClasses($event)"></app-nav-bar>
+<div class="d-flex flex-wrap justify-content-center align-items-center gap-4 p-4 p-5 align-items-stretch">
+    @if (!this.classesTogle) {
+        @for (class of classes; track $index) {
+            <app-classcard [classData]="class"></app-classcard>
+        }@empty {
+            <div class="container text-center align-items-center p-5">
+                <div class="row d-flex flex-column gap-3">
+                    <h1 class="h1 text-secondary">
+                        There is no classes to show
+                    </h1>
+                    <i class="bi bi-eyeglasses big-icon text-secondary"></i>
+                </div>
+            </div>
+        }
+    }@else{
+        @for (myclass of myClasses; track $index) {
+            <app-enroll-card [classData]="myclass"></app-enroll-card>
+        }@empty {
+            <div class="container text-center align-items-center p-5">
+                <div class="row d-flex flex-column gap-3">
+                    <h1 class="h1 text-secondary">
+                        You are not enrolled in any class
+                    </h1>
+                    <i class="bi bi-eyeglasses big-icon text-secondary"></i>
+                </div>
+            </div>
+        }
+    }
+    
+    
+</div>

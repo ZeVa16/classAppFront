@@ -1,0 +1,25 @@
+<div class="container center col-6 p-5 mt-5">
+    <div class="border p-5 row">
+        <h1 class="h1"> Login</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="input-group mb-1 p-2">
+                <input type="text" class="form-control" placeholder="mail@example.com" formControlName="email" [ngClass]="{ 'is-invalid': loginForm.get('email')!.invalid && loginForm.get('email')!.touched }">
+                <div *ngIf="loginForm.get('email')!.invalid && loginForm.get('email')!.touched" class="invalid-feedback">
+                    <div *ngIf="loginForm.get('email')!.errors?.['required']">the email is required</div>
+                    <div *ngIf="loginForm.get('email')!.errors?.['email']">It should be valid</div>
+                </div>
+            </div>
+            <div class="input-group mb-3 p-2">
+                <input type="password" class="form-control" placeholder="Write your password" formControlName="password" [ngClass]="{ 'is-invalid': loginForm.get('password')!.invalid && loginForm.get('password')!.touched }">
+                <div *ngIf="loginForm.get('password')!.invalid && loginForm.get('password')!.touched" class="invalid-feedback">
+                    <div *ngIf="loginForm.get('email')!.errors?.['required']">the password is required</div>
+                  </div>
+            </div>
+            
+            
+            <button class="btn btn-dark col-12" type="submit" >Log in </button>
+
+        </form>
+        <a (click)="redirectTo('/auth/register')" class="p text-dark mt-2 pointer">You dont have an account, click here</a>
+    </div>
+</div>

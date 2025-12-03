@@ -1,0 +1,8 @@
+
+<ng-container *ngIf="authService.isTeacher();else isStudent">
+    <app-teacher-dashboard></app-teacher-dashboard>
+</ng-container>
+<ng-template 
+#isStudent>
+<app-student-dashboard></app-student-dashboard>
+</ng-template>

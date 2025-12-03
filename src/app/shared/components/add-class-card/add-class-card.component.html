@@ -1,0 +1,9 @@
+<button (click)="openModal()" class="container btn btn-outline-success rounded p-2 d-flex justify-content-center align-items-center class-card" >
+    <i class="bi bi-plus-circle-fill fs-1"></i> 
+</button>
+<app-class-modal
+  [isOpen]="isModalOpen"
+  [mode]="'create'"
+  (close)="closeModal()"
+  (submitClass)="onSubmit($event)">
+</app-class-modal>
