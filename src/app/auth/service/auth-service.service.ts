@@ -36,8 +36,7 @@ export class AuthService {
         this.saveAuthData(response.data);
         this.isAuthenticatedSubject.next(true);
         this.toast.success("Login Succesfully","Great")
-      }),
-      catchError(this.handleAuthError)
+      })
     )   
   }
 
@@ -78,22 +77,6 @@ export class AuthService {
       }
     })
       
-  }
-
-  private handleAuthError(error:HttpErrorResponse):Observable<never>{
-    const backErrorMessage = error.error?.message;
-    let errorMessage:string;
-
-    if (error.status === 401) {
-      errorMessage = backErrorMessage || 'Acceso no autorizado. Verifica tus credenciales.';
-    } else if (error.status === 400 || error.status === 409) {
-      errorMessage = backErrorMessage || 'Error en los datos proporcionados.';
-    } else {
-      errorMessage = `Error de conexión o servidor (${error.status}).`;
-    }
-
-    this.toast.error(errorMessage, 'Failed');
-    return throwError(() => new Error(errorMessage));
   }
 
   saveAuthData(response: AuthResponse){
